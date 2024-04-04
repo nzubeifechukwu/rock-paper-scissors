@@ -4,54 +4,32 @@ const getComputerChoice = () => {
 };
 
 const playRound = (playerSelection, computerSelection) => {
-  if (playerSelection === computerSelection) {
+  if (
+    (playerSelection === "rock" && computerSelection === "scissors") ||
+    (playerSelection === "scissors" && computerSelection === "paper") ||
+    (playerSelection === "paper" && computerSelection === "rock")
+  ) {
+    console.log(
+      `You chose: ${playerSelection}\nComputer chose: ${computerSelection}\n`,
+      `You win round! ${playerSelection} beats ${computerSelection}`
+    );
+    return `win`;
+  } else if (
+    (playerSelection === "rock" && computerSelection === "paper") ||
+    (playerSelection === "paper" && computerSelection === "scissors") ||
+    (playerSelection === "scissors" && computerSelection === "rock")
+  ) {
+    console.log(
+      `You chose: ${playerSelection}\nComputer chose: ${computerSelection}\n`,
+      `You lose round! ${computerSelection} beats ${playerSelection}`
+    );
+    return `lose`;
+  } else {
     console.log(
       `You chose: ${playerSelection}\nComputer chose: ${computerSelection}\n`,
       `Round is a tie! You both chose ${computerSelection}.`
     );
     return `tie`;
-  }
-  if (playerSelection === "rock" && computerSelection === "scissors") {
-    console.log(
-      `You chose: ${playerSelection}\nComputer chose: ${computerSelection}\n`,
-      `You win round! ${playerSelection} beats ${computerSelection}`
-    );
-    return `win`;
-  }
-  if (playerSelection === "scissors" && computerSelection === "paper") {
-    console.log(
-      `You chose: ${playerSelection}\nComputer chose: ${computerSelection}\n`,
-      `You win round! ${playerSelection} beats ${computerSelection}`
-    );
-    return `win`;
-  }
-  if (playerSelection === "paper" && computerSelection === "rock") {
-    console.log(
-      `You chose: ${playerSelection}\nComputer chose: ${computerSelection}\n`,
-      `You win round! ${playerSelection} beats ${computerSelection}`
-    );
-    return `win`;
-  }
-  if (playerSelection === "rock" && computerSelection === "paper") {
-    console.log(
-      `You chose: ${playerSelection}\nComputer chose: ${computerSelection}\n`,
-      `You lose round! ${computerSelection} beats ${playerSelection}`
-    );
-    return `lose`;
-  }
-  if (playerSelection === "paper" && computerSelection === "scissors") {
-    console.log(
-      `You chose: ${playerSelection}\nComputer chose: ${computerSelection}\n`,
-      `You lose round! ${computerSelection} beats ${playerSelection}`
-    );
-    return `lose`;
-  }
-  if (playerSelection === "scissors" && computerSelection === "rock") {
-    console.log(
-      `You chose: ${playerSelection}\nComputer chose: ${computerSelection}\n`,
-      `You lose round! ${computerSelection}  beats ${playerSelection}`
-    );
-    return `lose`;
   }
 };
 
@@ -71,6 +49,8 @@ const playGame = () => {
       playerScore++;
     } else if (playRound(playerSelection, computerSelection).includes("lose")) {
       computerScore++;
+    } else {
+      continue;
     }
   }
 
