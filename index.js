@@ -38,16 +38,18 @@ const playGame = () => {
   let computerScore = 0;
   let playerSelection;
   let computerSelection;
+  let roundResult;
 
   for (let i = 0; i < 5; i++) {
     playerSelection = prompt(
       "Choose between 'rock', 'paper' and 'scissors':"
     ).toLowerCase();
     computerSelection = getComputerChoice();
+    roundResult = playRound(playerSelection, computerSelection);
 
-    if (playRound(playerSelection, computerSelection).includes("win")) {
+    if (roundResult === "win") {
       playerScore++;
-    } else if (playRound(playerSelection, computerSelection).includes("lose")) {
+    } else if (roundResult === "lose") {
       computerScore++;
     } else {
       continue;
