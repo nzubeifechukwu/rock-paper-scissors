@@ -1,15 +1,16 @@
 const body = document.querySelector("body");
 
 const btnDiv = document.createElement("div");
-const textDiv = document.createElement("div");
+const introDiv = document.createElement("div");
+const resultDiv = document.createElement("div");
 
 const heading = document.createElement("h1");
 heading.textContent = "Rock Paper Scissors Game";
-textDiv.appendChild(heading);
+introDiv.appendChild(heading);
 
-const para = document.createElement("p");
-para.textContent = "Click any of the buttons to make your choice";
-textDiv.appendChild(para);
+const introPara = document.createElement("p");
+introPara.textContent = "Click any of the buttons to make your choice";
+introDiv.appendChild(introPara);
 
 const rockBtn = document.createElement("button");
 rockBtn.textContent = "Rock";
@@ -23,89 +24,77 @@ const scissorsBtn = document.createElement("button");
 scissorsBtn.textContent = "Scissors";
 btnDiv.appendChild(scissorsBtn);
 
-body.appendChild(textDiv);
+body.appendChild(introDiv);
 body.appendChild(btnDiv);
-
-let choiceText = "";
-
-const playRound = (/* playerSelection, computerSelection */) => {
-  rockBtn.addEventListener("click", (e) => {
-    let computerChoice = getComputerChoice();
-    if (computerChoice === "scissors") {
-      choiceText = `You chose: ${e.target.textContent.toLowerCase()}\nComputer chose: ${computerChoice}\nYou win round! ${e.target.textContent.toLowerCase()} beats ${computerChoice}`;
-      return "win";
-    } else if (computerChoice === "paper") {
-      choiceText = `You chose: ${e.target.textContent.toLowerCase()}\nComputer chose: ${computerChoice}\nYou win round! ${e.target.textContent.toLowerCase()} beats ${computerChoice}`;
-      return "lose";
-    } else {
-      choiceText = `You chose: ${e.target.textContent.toLowerCase()}\nComputer chose: ${computerChoice}\nRound is a tie! You both chose ${computerSelection}`;
-      return "tie";
-    }
-  });
-
-  paperBtn.addEventListener("click", (e) => {
-    let computerChoice = getComputerChoice();
-    if (computerChoice === "rock") {
-      choiceText = `You chose: ${e.target.textContent.toLowerCase()}\nComputer chose: ${computerChoice}\nYou win round! ${e.target.textContent.toLowerCase()} beats ${computerChoice}`;
-      return "win";
-    } else if (computerChoice === "scissors") {
-      choiceText = `You chose: ${e.target.textContent.toLowerCase()}\nComputer chose: ${computerChoice}\nYou win round! ${e.target.textContent.toLowerCase()} beats ${computerChoice}`;
-      return "lose";
-    } else {
-      choiceText = `You chose: ${e.target.textContent.toLowerCase()}\nComputer chose: ${computerChoice}\nRound is a tie! You both chose ${computerSelection}`;
-      return "tie";
-    }
-  });
-
-  scissorsBtn.addEventListener("click", (e) => {
-    let computerChoice = getComputerChoice();
-    if (computerChoice === "paper") {
-      choiceText = `You chose: ${e.target.textContent.toLowerCase()}\nComputer chose: ${computerChoice}\nYou win round! ${e.target.textContent.toLowerCase()} beats ${computerChoice}`;
-      return "win";
-    } else if (computerChoice === "rock") {
-      choiceText = `You chose: ${e.target.textContent.toLowerCase()}\nComputer chose: ${computerChoice}\nYou win round! ${e.target.textContent.toLowerCase()} beats ${computerChoice}`;
-      return "lose";
-    } else {
-      choiceText = `You chose: ${e.target.textContent.toLowerCase()}\nComputer chose: ${computerChoice}\nRound is a tie! You both chose ${computerSelection}`;
-      return "tie";
-    }
-  });
-};
 
 const getComputerChoice = () => {
   const possibleChoices = ["rock", "paper", "scissors"];
   return possibleChoices[Math.floor(Math.random() * possibleChoices.length)];
 };
 
-// const playRound = (playerSelection, computerSelection) => {
-//   if (
-//     (playerSelection === "rock" && computerSelection === "scissors") ||
-//     (playerSelection === "scissors" && computerSelection === "paper") ||
-//     (playerSelection === "paper" && computerSelection === "rock")
-//   ) {
-//     console.log(
-//       `You chose: ${playerSelection}\nComputer chose: ${computerSelection}\n`,
-//       `You win round! ${playerSelection} beats ${computerSelection}`
-//     );
-//     return `win`;
-//   } else if (
-//     (playerSelection === "rock" && computerSelection === "paper") ||
-//     (playerSelection === "paper" && computerSelection === "scissors") ||
-//     (playerSelection === "scissors" && computerSelection === "rock")
-//   ) {
-//     console.log(
-//       `You chose: ${playerSelection}\nComputer chose: ${computerSelection}\n`,
-//       `You lose round! ${computerSelection} beats ${playerSelection}`
-//     );
-//     return `lose`;
-//   } else {
-//     console.log(
-//       `You chose: ${playerSelection}\nComputer chose: ${computerSelection}\n`,
-//       `Round is a tie! You both chose ${computerSelection}.`
-//     );
-//     return `tie`;
-//   }
-// };
+const playRound = () => {
+  let resultPara = "";
+
+  rockBtn.addEventListener("click", (e) => {
+    const computerChoice = getComputerChoice();
+
+    if (computerChoice === "scissors") {
+      resultPara += `<p>You chose: ${e.target.textContent.toLowerCase()}<br>Computer chose: 
+        ${computerChoice}<br>You win round! ${e.target.textContent.toLowerCase()} beats ${computerChoice}<br></p>`;
+    } else if (computerChoice === "paper") {
+      resultPara += `<p>You chose: ${e.target.textContent.toLowerCase()}<br>Computer chose: 
+        ${computerChoice}<br>You lose round! ${computerChoice} beats ${e.target.textContent.toLowerCase()}<br></p>`;
+    } else {
+      resultPara += `<p>You chose: ${e.target.textContent.toLowerCase()}<br>Computer chose: 
+        ${computerChoice}<br>Round is a tie! You both chose ${computerChoice}<br></p>`;
+    }
+
+    resultDiv.innerHTML = resultPara;
+    body.appendChild(resultDiv);
+
+    return resultPara;
+  });
+
+  paperBtn.addEventListener("click", (e) => {
+    const computerChoice = getComputerChoice();
+
+    if (computerChoice === "rock") {
+      resultPara += `<p>You chose: ${e.target.textContent.toLowerCase()}<br>Computer chose: 
+        ${computerChoice}<br>You win round! ${e.target.textContent.toLowerCase()} beats ${computerChoice}<br></p>`;
+    } else if (computerChoice === "scissors") {
+      resultPara += `<p>You chose: ${e.target.textContent.toLowerCase()}<br>Computer chose: 
+        ${computerChoice}<br>You lose round! ${computerChoice} beats ${e.target.textContent.toLowerCase()}<br></p>`;
+    } else {
+      resultPara += `<p>You chose: ${e.target.textContent.toLowerCase()}<br>Computer chose: 
+        ${computerChoice}<br>Round is a tie! You both chose ${computerChoice}<br></p>`;
+    }
+
+    resultDiv.innerHTML = resultPara;
+    body.appendChild(resultDiv);
+
+    return resultPara;
+  });
+
+  scissorsBtn.addEventListener("click", (e) => {
+    const computerChoice = getComputerChoice();
+
+    if (computerChoice === "paper") {
+      resultPara += `<p>You chose: ${e.target.textContent.toLowerCase()}<br>Computer chose: 
+        ${computerChoice}<br>You win round! ${e.target.textContent.toLowerCase()} beats ${computerChoice}<br></p>`;
+    } else if (computerChoice === "rock") {
+      resultPara += `<p>You chose: ${e.target.textContent.toLowerCase()}<br>Computer chose: 
+        ${computerChoice}<br>You lose round! ${computerChoice} beats ${e.target.textContent.toLowerCase()}<br></p>`;
+    } else {
+      resultPara += `<p>You chose: ${e.target.textContent.toLowerCase()}<br>Computer chose: 
+        ${computerChoice}<br>Round is a tie! You both chose ${computerChoice}<br></p>`;
+    }
+
+    resultDiv.innerHTML = resultPara;
+    body.appendChild(resultDiv);
+
+    return resultPara;
+  });
+};
 
 const playGame = () => {
   let playerScore = 0;
@@ -139,4 +128,4 @@ const playGame = () => {
   }
 };
 
-console.log(playGame());
+playRound();
