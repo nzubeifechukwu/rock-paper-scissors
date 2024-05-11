@@ -1,6 +1,5 @@
 html {
   box-sizing: border-box;
-  /* display: flexbox; */
 }
 
 *,
@@ -39,4 +38,15 @@ button {
   text-transform: uppercase;
   font-size: 16px;
   font-weight: bold;
+  cursor: pointer;
+}
+
+button:hover {
+  box-shadow: 10px 5px 5px rgba(0, 95, 115, 0.3);
+  transition: ease 0.5s;
+}
+
+button:active {
+  background-color: #005f73;
+  color: #e9d8a6;
 }
