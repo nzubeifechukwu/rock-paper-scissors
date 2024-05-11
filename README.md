@@ -10,7 +10,6 @@ chooses one item from "rock", "paper" and "scissors". "Scissors" wins (cuts)
 
 - Open the `index.html` file
 - Follow the prompt to make your choice between "rock", "paper" and "scissors"
-- Press OK after you've made your choice
-- The console prints the results of the round
+- The computer choice is automatically selected and the result of the round is displayed on the screen
 - There are 4 more rounds, making it a total of 5 rounds
-- Once you complete round 5, the game ends and the console prints the final result
+- Once you complete round 5, the game ends and the final result is displayed
